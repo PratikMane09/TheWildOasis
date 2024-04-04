@@ -1,0 +1,9 @@
+def replace(input_string):
+    words = input_string.split('.')
+    result = []
+    for i, word in enumerate(words):
+        if i % 2 == 1:
+            result.append('xyz')
+        else:
+            result.append(word)
+    return '.'.join(result)
