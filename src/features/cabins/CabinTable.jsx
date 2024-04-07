@@ -32,7 +32,7 @@ function CabinTable() {
   const {
     isLoading,
     data: cabins,
-    error,
+    // Error,
   } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,

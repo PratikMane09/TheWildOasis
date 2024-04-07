@@ -61,6 +61,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
+    console.log(data);
     mutate(data);
   }
 
@@ -73,7 +74,7 @@ function CreateCabinForm() {
 
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum capacity</Label>
-        <Input type="number" id="maxCapacity" {...register("maxcapacity")} />
+        <Input type="number" id="maxCapacity" {...register("maxCapacity")} />
       </FormRow>
 
       <FormRow>
