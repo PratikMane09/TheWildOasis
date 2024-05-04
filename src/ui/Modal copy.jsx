@@ -1,4 +1,3 @@
-import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -52,35 +51,15 @@ const Button = styled.button`
   }
 `;
 
-const ModalContext = createContext();
-
-function Modal({ children }) {
-  const [openName, setOpenName] = useState("");
-
-  const close = () => setOpenName("");
-  const open = setOpenName;
-  return (
-    <ModalContext.Provider value={{ openName, close, open }}>
-      {children}
-    </ModalContext.Provider>
-  );
-}
-
-function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
-}
-function Window({ children, name }) {
-  const { openName, close } = useContext(ModalContext);
-  if (name !== openName) return null;
+function Modal({ children, onClose }) {
   return createPortal(
     //Portal it allow us to create an invisible tunnel,from the place where the component is in the component tree to another place in the DOM tree  whye do e you need because of css proper ty might be something overflow hidden property so there modal will bwe the top of modal
     <Overlay>
       <StyledModal>
-        <Button onClick={close}>
+        <Button onClick={onClose}>
           <HiXMark />
         </Button>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{children}</div>
       </StyledModal>
     </Overlay>,
     // document.body
@@ -88,6 +67,4 @@ function Window({ children, name }) {
   );
 }
 
-Modal.Window = Window;
-Modal.Open = Open;
 export default Modal;
