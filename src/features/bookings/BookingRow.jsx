@@ -53,7 +53,7 @@ function BookingRow({
     "checked-in": "green",
     "checked-out": "silver",
   };
-
+  console.log("fname:", guestName);
   return (
     <Table.Row>
       <Cabin>{cabinName}</Cabin>
