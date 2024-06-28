@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCabins } from "../../services/apiCabins";
-import { getBooking } from "../../services/apiBookings";
 import { useParams } from "react-router-dom";
+import { getBooking } from "../../services/apiBookings";
 
-function useBooking() {
+export function useBooking() {
   const { bookingId } = useParams();
+
   const {
     isLoading,
     data: booking,
@@ -14,7 +14,6 @@ function useBooking() {
     queryFn: () => getBooking(bookingId),
     retry: false,
   });
+
   return { isLoading, error, booking };
 }
-
-export default useBooking;

@@ -2,7 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateBooking } from "../../services/apiBookings";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-function useCheckin() {
+
+export function useCheckin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -22,7 +23,6 @@ function useCheckin() {
 
     onError: () => toast.error("There was an error while checking in"),
   });
+
   return { checkin, isCheckingIn };
 }
-
-export default useCheckin;
